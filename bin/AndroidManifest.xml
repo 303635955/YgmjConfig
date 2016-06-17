@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.yunguo.ygmjconfig"
+    android:versionCode="2"
+    android:versionName="1.1.3" >
+
+    <uses-sdk
+        android:minSdkVersion="9"
+        android:targetSdkVersion="19" />
+
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/><!--  在SDCard中创建与删除文件权限 -->
+ <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /><!--  往SDCard写入数据权限 -->）
+ 
+ 
+ 
+ <!-- 这个权限用于进行网络定位-->
+<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"></uses-permission>
+<!-- 这个权限用于访问GPS定位-->
+<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"></uses-permission>
+<!-- 用于访问wifi网络信息，wifi信息会用于进行网络定位-->
+<uses-permission android:name="android.permission.ACCESS_WIFI_STATE"></uses-permission>
+<!-- 获取运营商信息，用于支持提供运营商信息相关的接口-->
+<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"></uses-permission>
+<!-- 这个权限用于获取wifi的获取权限，wifi信息会用来进行网络定位-->
+<uses-permission android:name="android.permission.CHANGE_WIFI_STATE"></uses-permission>
+<!-- 用于读取手机当前的状态-->
+<uses-permission android:name="android.permission.READ_PHONE_STATE"></uses-permission>
+<!-- 写入扩展存储，向扩展卡写入数据，用于写入离线定位数据-->
+<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
+<!-- 访问网络，网络定位需要上网-->
+<uses-permission android:name="android.permission.INTERNET" />
+<!-- SD卡读取权限，用户写入离线定位数据-->
+<uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"></uses-permission>
+
+<uses-permission android:name="android.permission.RESTART_PACKAGES"></uses-permission>
+ 
+
+    <application
+        android:name="com.yunguo.ygmjconfig.LocationApplication.LocationApplication"
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:theme="@style/notitle"
+        android:label="@string/app_name"
+ >
+ 
+        <meta-data android:name="com.baidu.lbsapi.API_KEY" android:value="bx2DNZy6qTrx07heSw8UtWKnGeT9P5M2"/>
+
+		<service android:name="com.baidu.location.f" android:process=":remote" android:enabled="true"> </service>
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name"
+            android:windowSoftInputMode="adjustPan" >
+        </activity>
+       
+        <activity
+            android:name="com.yunguo.ygmjconfig.WelcomeActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        
+        <activity 
+            android:name="com.yunguo.ygmjconfig.LoginActivity"></activity>
+        
+        <activity
+            android:name="SystemConfigActivity"
+            android:windowSoftInputMode="adjustPan" >
+        </activity>
+        
+        <activity 
+            android:name="com.yunguo.ygmjconfig.DeviceConfigActivity"></activity>
+        
+        <activity android:name="DevControllerActivity" >
+        </activity>
+        <activity android:name="com.yunguo.ygmjconfig.DevH3Activity" >
+        </activity>
+        <activity
+            android:name="DevControllerActivitySub"
+            android:label="门禁控制器配置"
+            android:theme="@android:style/Theme.Dialog" >
+            
+        </activity>
+        
+        <activity
+            android:name="DevControllerActivityODV"
+            android:label="视频配置"
+            android:theme="@android:style/Theme.Dialog" >
+            
+        </activity>
+        
+        <activity 
+            android:name="com.yunguo.ygmjconfig.AddRtspUrlDiog"
+            android:label="Rtsp配置"
+            android:theme="@android:style/Theme.Dialog">
+            
+        </activity>
+        
+        <activity
+            android:name="DevControllerActivityH3"
+            android:theme="@android:style/Theme.Dialog" >
+            
+        </activity>
+        
+        
+        <activity
+            android:name="AdressDlogActivity"
+            android:label="选择省市区"
+            android:theme="@android:style/Theme.Dialog" >
+            
+        </activity>
+        
+        <activity
+            android:name="HouseConfigActivity"
+            android:windowSoftInputMode="adjustPan" >
+        </activity>
+        <activity android:name="HouseAddActivity"
+            	  android:windowSoftInputMode="adjustPan|stateHidden" >
+        </activity>
+        
+        <activity android:name="com.yunguo.ygmjconfig.HouseManageActivity"></activity>
+        
+        <activity 
+            android:name="com.yunguo.ygmjconfig.Util.DateTimePickDialogUtil"
+            android:label="选择起止时间"
+            android:theme="@android:style/Theme.Dialog"></activity>
+        
+    </application>
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"></uses-permission>  
+	
+	
+	<permission android:name="android.permission.SET_PREFERRED_APPLICATIONS"
+        android:permissionGroup="android.permission-group.SYSTEM_TOOLS"
+        android:protectionLevel="signatureOrSystem"
+       />
+
+</manifest>

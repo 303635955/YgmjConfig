@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="250dip"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+    <LinearLayout 
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:orientation="horizontal">
+     	 <ImageButton
+             android:id="@+id/stuback"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_margin="10dip"
+             android:background="#00000000"
+             android:src="@drawable/not"
+             android:text="取     消"/>
+     	<TextView 
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginTop="10dip"
+            android:gravity="center"
+            android:text="RTSP配置"/>
+     	<ImageButton
+     	     android:id="@+id/studate"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_margin="10dip"
+             android:background="#00000000"
+             android:src="@drawable/sure"
+             android:text="确      定"/>
+      </LinearLayout>
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView 
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="center_vertical"
+            android:textColor="#FFFFFF"
+            android:text="选择输入方式:"/>
+       <Spinner 
+        android:id="@+id/inputtype_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    </LinearLayout>
+    
+    <LinearLayout
+        android:id="@+id/rtsp_edit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView 
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="center_vertical"
+            android:textColor="#FFFFFF"
+            android:text="RTSP地址:"/>
+        <EditText
+            android:id="@+id/rtspstr"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:inputType="textMultiLine"
+            android:layout_weight="2"
+            android:background="@android:drawable/editbox_background"
+   			android:gravity="left|top"
+   			android:minLines="6"/>
+    </LinearLayout>
+    
+    <LinearLayout
+        android:id="@+id/brandlinear" 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:orientation="horizontal">
+        <TextView 
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textColor="#FFFFFF"
+            android:text="品牌:"/>
+        <Spinner
+		    android:id="@+id/rtspBrand"
+		    android:layout_width="0dip"
+		    android:layout_height="wrap_content"
+		    android:layout_weight="2"
+		    />
+    </LinearLayout>
+    
+    <LinearLayout
+        android:id="@+id/iplinear" 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:orientation="horizontal">
+       	  <TextView
+	          android:layout_width="0dp"
+	          android:layout_height="wrap_content"
+	          android:layout_weight="1"
+	          android:textColor="#FFFFFF"
+	          android:text="IP:" >
+      	  </TextView>
+      	  <EditText
+	          android:id="@+id/RtspIp"
+	          android:layout_width="0dp"
+	          android:layout_height="wrap_content"
+	          android:layout_weight="2"
+	          android:ellipsize="end"
+	          android:background="@android:drawable/editbox_background"/>
+    </LinearLayout>
+    
+    <LinearLayout
+        android:id="@+id/portlinear" 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:orientation="horizontal">
+       	  <TextView
+	          android:layout_width="0dp"
+	          android:layout_height="wrap_content"
+	          android:layout_weight="1"
+	          android:textColor="#FFFFFF"
+	          android:text="端口:" >
+      	  </TextView>
+      	  <EditText
+	          android:id="@+id/RtspProt"
+	          android:layout_width="0dp"
+	          android:layout_height="wrap_content"
+	          android:layout_weight="2"
+	          android:ellipsize="end"
+	          android:background="@android:drawable/editbox_background"/>
+    </LinearLayout>
+    
+    <LinearLayout
+        android:id="@+id/usernamelinear" 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:orientation="horizontal">
+       	  <TextView
+	          android:layout_width="0dp"
+	          android:layout_height="wrap_content"
+	          android:layout_weight="1"
+	          android:textColor="#FFFFFF"
+	          android:text="账号:" >
+      	  </TextView>
+      	  <EditText
+	          android:id="@+id/username"
+	          android:layout_width="0dp"
+	          android:layout_height="wrap_content"
+	          android:layout_weight="2"
+	          android:ellipsize="end"
+	          android:background="@android:drawable/editbox_background"/>
+    </LinearLayout>
+    
+    <LinearLayout
+        android:id="@+id/passlinear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:orientation="horizontal">
+       	  <TextView
+	          android:layout_width="0dp"
+	          android:layout_height="wrap_content"
+	          android:layout_weight="1"
+	          android:textColor="#FFFFFF"
+	          android:text="密码:" >
+      	  </TextView>
+      	  <EditText
+	          android:id="@+id/passworld"
+	          android:layout_width="0dp"
+	          android:layout_height="wrap_content"
+	          android:layout_weight="2"
+	          android:ellipsize="end"
+	          android:background="@android:drawable/editbox_background"/>
+    </LinearLayout>
+    
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView 
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="center_vertical"
+            android:textColor="#FFFFFF"
+            android:text="抓怕类型:"/>
+       <Spinner 
+        android:id="@+id/doortype_spinner"
+        android:layout_width="200dip"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"/>
+    </LinearLayout>
+    
+</LinearLayout>

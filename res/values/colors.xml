@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="popup_main_background">#b0000000</color>
+    <color name="black">#000000</color>
+    <color name="choose_eara_item_press_color">#f4f4f4</color>
+    <color name="no_color">#00000000</color>
+	<color name="province_line_border">#C7C7C7</color>
+	<color name="radiobutflase">#F0FFFF</color>
+	<color name="radiobuttrue">#5CACEE</color>
+	<color name="light_blue">#5CACEE</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="radiobut_text_true">#FFFFFF</color>
+    <color name="radiobut_text_false">#5CACEE</color>
+    <color name="radiobutflase2">#00000000</color>
+	<color name="radiobuttrue2">#55FFFFFF</color>
+</resources>

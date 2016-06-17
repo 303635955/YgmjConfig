@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android" >
+      <solid android:color="#30B3E8F6" />
+    <!--
+  设置圆角
+  注意：	bottomRightRadius是左下角而不是右下角  bottomLeftRadius右下角
+    -->
+	<!-- <stroke  
+        android:width="0.005dp"  
+        android:color="#20FFFFFF" />  
+  
+    <padding  
+        android:bottom="0.1dp"  
+        android:left="0.1dp"  
+        android:right="0.1dp"  
+        android:top="0dp" /> -->
+</shape>

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/biz_news_local_weather_bg_big"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp" 
+        android:paddingTop="10dp">
+
+        <ImageView
+            android:id="@+id/image2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:layout_centerHorizontal ="true"
+            android:maxHeight="250px"
+            android:src="@drawable/yunguologo" />
+
+    </RelativeLayout>
+    
+    <RadioGroup
+        android:id="@+id/menuRadiobut"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dip"
+        android:layout_marginRight="20dip"
+        android:layout_marginTop="10dip">
+        
+        <RadioButton
+            android:id="@+id/tvDiscussMeeting" 
+            android:layout_width="match_parent"
+            android:layout_height="60dip"
+            android:textColor="@color/white"
+            android:button="@null"
+            android:gravity="center"
+        	android:textSize="25.0sp"
+        	android:background="@drawable/selecdadiobut3"
+        	android:layout_marginTop="5dip"
+            android:text="房屋管理"/>
+        <RadioButton
+            android:id="@+id/tvToday"
+            android:layout_width="match_parent"
+            android:layout_height="60dip"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:button="@null"
+        	android:textSize="25.0sp"
+        	android:layout_marginTop="5dip"
+        	android:background="@drawable/selecdadiobut3"
+            android:text="房屋登记"/>
+        <RadioButton
+            android:id="@+id/tvLastlist" 
+            android:layout_width="match_parent"
+            android:layout_height="60dip"
+            android:textColor="@color/white"
+            android:button="@null"
+            android:layout_marginTop="5dip"
+            android:gravity="center"
+        	android:textSize="25.0sp"
+        	android:background="@drawable/selecdadiobut3"
+            android:text="设备配置"/>
+        <RadioButton
+            android:id="@+id/tvMyFavorites" 
+            android:layout_width="match_parent"
+            android:layout_height="60dip"
+            android:textColor="@color/white"
+            android:button="@null"
+        	android:textSize="25.0sp"
+        	android:gravity="center"
+        	android:layout_marginTop="5dip"
+        	android:background="@drawable/selecdadiobut3"
+            android:text="修改密码"/>
+        <RadioButton
+            android:id="@+id/tvMyComments" 
+            android:layout_width="match_parent"
+            android:layout_height="60dip"
+            android:textColor="@color/white"
+            android:button="@null"
+            android:gravity="center"
+        	android:textSize="25.0sp"
+        	android:layout_marginTop="5dip"
+        	android:background="@drawable/selecdadiobut3"
+            android:text="注销登录"/>
+        <RadioButton
+            android:id="@+id/endsyatem" 
+            android:layout_width="match_parent"
+            android:layout_height="60dip"
+            android:textColor="@color/white"
+            android:button="@null"
+            android:gravity="center"
+            android:layout_marginTop="5dip"
+        	android:textSize="25.0sp"
+        	android:background="@drawable/selecdadiobut3"
+            android:text="退出应用"/>
+        
+    </RadioGroup>
+    
+	
+</LinearLayout>

@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:minWidth="350dp"
+    android:orientation="vertical" >
+     <LinearLayout 
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:orientation="horizontal">
+        <ImageButton
+	         android:layout_width="wrap_content"
+	         android:layout_height="wrap_content"
+	         android:onClick="OnClickfinish"
+	         android:layout_margin="10dip"
+	         android:background="#00000000"
+	         android:src="@drawable/not"/>
+        
+        <TextView 
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginTop="10dip"
+            android:gravity="center"
+            android:text="H3通信板配置"/>
+	           
+        <ImageButton
+	         android:layout_width="wrap_content"
+	         android:layout_height="wrap_content"
+	         android:onClick="OnClickSure"
+	         android:background="#00000000"
+	         android:layout_margin="10dip"
+	         android:src="@drawable/sure"/>
+            
+    </LinearLayout>
+
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="9" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="top|center"
+            android:orientation="vertical" >
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:stretchColumns="1" >
+                
+                <TableRow
+                    android:layout_marginBottom="10dp"
+                    android:gravity="center" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="门禁序列号" >
+                    </TextView>
+
+                    <EditText
+                        android:id="@+id/editsn"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@android:drawable/editbox_background"/>
+                    
+                    <TextView android:text="" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_marginBottom="10dp"
+                    android:gravity="center" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="IP获取方式" >
+                    </TextView>
+
+						<Spinner
+						android:id="@+id/ipSettingType"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						/>
+                    
+                    <TextView android:text="" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_marginBottom="10dp"
+                    android:gravity="center" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="IP地址" >
+                    </TextView>
+
+                    <EditText
+                        android:id="@+id/Ip"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@android:drawable/editbox_background"/>
+                    
+                    <TextView android:text="" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_marginBottom="10dp"
+                    android:gravity="center" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="网关" >
+                    </TextView>
+
+                    <EditText
+                        android:id="@+id/GetWay"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@android:drawable/editbox_background"/>
+                    
+                    <TextView android:text="" />
+                </TableRow>
+                
+                <TableRow
+                    android:layout_marginBottom="10dp"
+                    android:gravity="center" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="MAC" >
+                    </TextView>
+
+                    <EditText
+                        android:id="@+id/mac"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@android:drawable/editbox_background"/>
+                    
+                    <TextView android:text="" />
+                </TableRow>
+
+                  <TableRow
+                    android:layout_marginBottom="10dp"
+                    android:gravity="center" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="子网掩码" >
+                    </TextView>
+
+                    <EditText
+                        android:id="@+id/Mask"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@android:drawable/editbox_background"/>
+                    
+                    <TextView android:text="" />
+                </TableRow>
+                
+                
+                  <!--  <TableRow
+                    android:layout_marginBottom="10dp"
+                    android:gravity="center" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="门禁板类型" >
+                    </TextView>
+
+                    <Spinner
+						android:id="@+id/mjtype"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						/>
+                    <TextView android:text="" />
+                </TableRow> -->
+                
+                   <TableRow
+                    android:layout_marginBottom="10dp"
+                    android:gravity="center" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="录像抓拍时长" >
+                    </TextView>
+
+                    <EditText
+                        android:id="@+id/videotime"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@android:drawable/editbox_background"/>
+                     <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="20dip"
+                        android:textStyle="bold"
+                        android:text="分钟" >
+                    </TextView>
+                    
+                    <TextView android:text="" />
+                </TableRow>
+                
+                  <TableRow
+                    android:layout_marginBottom="10dp"
+                    android:gravity="center" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="平台地址" >
+                    </TextView>
+
+                    <EditText
+                        android:id="@+id/VideoServer"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@android:drawable/editbox_background"/>
+                    
+                    <TextView android:text="" />
+                </TableRow>
+                
+                  <TableRow
+                    android:layout_marginBottom="10dp"
+                    android:gravity="center" >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="视频储存路径" >
+                    </TextView>
+                    <Spinner
+						android:id="@+id/VideoStorePath"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						/>
+                    <TextView android:text="" />
+                </TableRow>
+            </TableLayout>
+        </LinearLayout>
+    </ScrollView>
+    
+  		<TextView
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:gravity="center_horizontal"
+             android:layout_marginTop="10dip"
+             android:text="RTSP配置"/>
+         <View 
+             android:layout_width="match_parent"
+             android:layout_height="1dip"
+             android:layout_marginLeft="5dip"
+             android:layout_marginRight="5dip"
+             android:background="#FFFFFF"/>
+         
+         <ListView
+             android:id="@+id/rtsplist"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             />
+         
+         <ImageButton
+             android:id="@+id/addrtspbut"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_gravity="center_horizontal"
+             android:background="#00000000"
+             android:src="@drawable/addrtspimg"
+             android:layout_marginTop="20dip"/>
+</LinearLayout>
