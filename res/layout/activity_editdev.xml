@@ -45,7 +45,6 @@
             android:textColor="#000"
             android:layout_marginRight="10dp"
             android:onClick="AddDataOnClick"
-            android:visibility="gone"
             android:text="添加锁"
             android:background="@drawable/sud_select_xml"/>
                 

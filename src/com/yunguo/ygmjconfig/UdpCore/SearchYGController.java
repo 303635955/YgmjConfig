@@ -17,6 +17,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.yunguo.ygmjconfig.Controller.YGController;
 import com.yunguo.ygmjconfig.Entity.Controller;
 import com.yunguo.ygmjconfig.Util.SwitchData;
 
@@ -101,6 +102,7 @@ public class SearchYGController {
                 	controller.setCloseToRemindDelay(map.get("CloseToRemindDelay"));
                 	controller.setUnlockAlarm(map.get("UnlockAlarm"));
                 	
+                	controller.setServerUrl(new YGController().GetDevCtrlPlatform(controller.getmDevSN(), controller.getmDevIP()));
                 	System.out.println("mj_map ========"+map);
                 	
                 	controllers.add(controller);

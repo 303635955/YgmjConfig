@@ -23,6 +23,8 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.InputType;
+import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -72,13 +74,13 @@ public class DevControllerActivityH3 extends Activity {
 		 */
 		initlistSinner();
 		/**
-		 * 填充数据
-		 */
-		setData();
-		/**
 		 * 控件监听
 		 */
 		setOnClick();
+		/**
+		 * 填充数据
+		 */
+		setData();
 		/**
 		 * 初始化listview
 		 */
@@ -102,6 +104,16 @@ public class DevControllerActivityH3 extends Activity {
 		 editsn = (EditText) findViewById(R.id.editsn);
 		 videotime = (EditText) findViewById(R.id.videotime);
 		 VideoServer = (EditText) findViewById(R.id.VideoServer);
+		 
+		 //设置EditText的显示方式为多行文本输入  
+		 VideoServer.setInputType(InputType.TYPE_TEXT_FLAG_MULTI_LINE); 
+		 //文本显示的位置在EditText的最上方  
+		 VideoServer.setGravity(Gravity.TOP);  
+		 //改变默认的单行模式  
+		 VideoServer.setSingleLine(false);  
+		 //水平滚动设置为False  
+		 VideoServer.setHorizontallyScrolling(false);
+		 
 		 VideoStorePath = (Spinner) findViewById(R.id.VideoStorePath);
 		 
 		 rtsplist = (ListView) findViewById(R.id.rtsplist);
@@ -120,7 +132,7 @@ public class DevControllerActivityH3 extends Activity {
 		getmap = myMap.getH3Map();
 		
 		String dhcp = "";
-		if(getmap.get("Dhcp").equals("true")){
+		if(getmap.get("Dhcp").equals(true)){
 			dhcp = "DHCP";
 		}else{
 			dhcp = "手动";
@@ -137,9 +149,9 @@ public class DevControllerActivityH3 extends Activity {
 		 //setSpinnerItemSelectedByValue(mjtype,getmap.get("DoorCtrlType")+"");//门禁类型
 		 videotime.setText(getmap.get("VideoCapDuration")+"");	//录像时长
 		 
-		 if(!(getmap.get("VideoServer")+"").equals("null")){
+		 if(!(getmap.get("DeviceCtrlServer")+"").equals("")){
 			 
-			 VideoServer.setText(getmap.get("VideoServer")+"");	//平台地址
+			 VideoServer.setText(getmap.get("DeviceCtrlServer")+"");	//平台地址
 		 }
 		 
 		 setSpinnerItemSelectedByValue(VideoStorePath,getmap.get("VideoStorePath")+"");//缓存路径
@@ -316,11 +328,19 @@ public class DevControllerActivityH3 extends Activity {
 		 		dhcpstr = true;
 		 	}else {
 		 		dhcpstr = false;
-		 		IPstr = Ip.getText().toString();//IP
-		 		Getwaystr = GetWay.getText().toString();//网关
-				Maskstr = Mask.getText().toString();//掩码
-				Mac = MAC.getText().toString();
 			}
+		 	IPstr = Ip.getText().toString();//IP
+		 	Getwaystr = GetWay.getText().toString();//网关
+		 	if(Getwaystr.equals("")){
+		 		String tmp =  getmap.get("Ip")+"";
+		 		int path_1 = tmp.indexOf(".");// 第一个位置
+		 		int path_2 = path_1 + tmp.substring(path_1 + 1).indexOf(".") + 1;// 第二个位置
+		 		int path_3 = path_2 + tmp.substring(path_2 + 1).indexOf(".") + 1;// 第三个位置
+		 		
+		 		Getwaystr = tmp.substring(0, path_3+1)+"1";
+		 	}
+		 	Maskstr = Mask.getText().toString();//掩码
+		 	Mac = MAC.getText().toString();
 		 	
 		 	
 			String DoorCtrlSN = editsn.getText().toString();//DoorCtrlSN
@@ -362,7 +382,7 @@ public class DevControllerActivityH3 extends Activity {
 			configData.DoorCtrlSN = DoorCtrlSN;
 			//configData.DoorCtrlType = DoorCtrlType;
 			configData.VideoCapDuration = Videotime;
-			configData.CtrlServer = VideoServerurl;
+			configData.DeviceCtrlServer = VideoServerurl;
 			configData.VideoUrl = VideoUrllist;
 			configData.VideoStorePath = VideoStorePathstr;
 			

@@ -119,6 +119,7 @@ public class AdressDlogActivity extends Activity{
 				Map<String,String> map = (Map<String, String>) addressAdapter1.getItem(arg2);
 				String selecdName =  map.get("Name");
 				if(!selecdName.equals("请选择")){
+					spin_province.setVisibility(View.GONE);
 					spin_city.setVisibility(View.GONE);
 					spin_county.setVisibility(View.GONE);
 					spin_county2.setVisibility(View.GONE);
@@ -143,6 +144,7 @@ public class AdressDlogActivity extends Activity{
 				Map<String,String> map = (Map<String, String>) addressAdapter.getItem(arg2);
 				String selecdName =  map.get("Name");
 				if(!selecdName.equals("请选择")){
+					spin_city.setVisibility(View.GONE);
 					spin_county.setVisibility(View.GONE);
 					spin_county2.setVisibility(View.GONE);
 					spin_county3.setVisibility(View.GONE);
@@ -165,6 +167,7 @@ public class AdressDlogActivity extends Activity{
 				@SuppressWarnings("unchecked")
 				Map<String,String> map = (Map<String, String>) addressAdapter2.getItem(arg2);
 				String selecdName =  map.get("Name");
+				spin_county.setVisibility(View.GONE);
 				spin_county2.setVisibility(View.GONE);
 				spin_county3.setVisibility(View.GONE);
 				if(!selecdName.equals("请选择")){
@@ -188,6 +191,7 @@ public class AdressDlogActivity extends Activity{
 				Map<String,String> map = (Map<String, String>) addressAdapter3.getItem(arg2);
 				String selecdName =  map.get("Name");
 				if(!selecdName.equals("请选择")){
+					spin_county2.setVisibility(View.GONE);
 					spin_county3.setVisibility(View.GONE);
 					addressId2 = map.get("Id");
 					str4 = selecdName;
@@ -211,6 +215,7 @@ public class AdressDlogActivity extends Activity{
 				if(!selecdName.equals("请选择")){
 					addressId2 = map.get("Id");
 					str5 = selecdName;
+					spin_county3.setVisibility(View.GONE);
 					addresstext.setText(str1+str2+str3+str4+str5);
 					tmp = 4;
 					new Thread(mThreadLoadApps).start();
@@ -312,11 +317,12 @@ public class AdressDlogActivity extends Activity{
 				e.printStackTrace();
 			}
 			String ret = HtmlUtil.PostStringToUrl("http://120.25.65.125:8118/Client1/GetAreaListByid",jsonObject.toString());
-			
-			tempAddress.clear();
-			tempAddress.add(SpinnerValue);
-			tempAddress.addAll(getMessgeList(ret));
-			handler1.sendEmptyMessage(tmp);
+				if(getMessgeList(ret) != null){
+					tempAddress.clear();
+					tempAddress.add(SpinnerValue);
+					tempAddress.addAll(getMessgeList(ret));
+					handler1.sendEmptyMessage(tmp);
+				}
 		}
 	};
 	
@@ -326,6 +332,10 @@ public class AdressDlogActivity extends Activity{
 			JSONObject jsonObject2 =new JSONObject(str);
 			codestr = (String) jsonObject2.get("message");
 			JSONArray jsonArray = jsonObject2.getJSONArray("areas"); 
+			
+			if(jsonArray.length() <= 0){
+				return null;
+			}
 			 for (int i=0;i<jsonArray.length();i++){
 				  Map<String,String> map = new HashMap<String, String>();
 		          JSONObject jsonObjectSon= (JSONObject)jsonArray.opt(i);

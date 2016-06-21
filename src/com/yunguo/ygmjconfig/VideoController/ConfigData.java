@@ -21,7 +21,7 @@ public class ConfigData {
     public int DoorCtrlType;    //门禁板类型 【可选】, 如果配置了门禁板序列号，则默认选择DCTRL_TYPE_YG_NET
     public int VideoCapDuration;      //视频录像时长
     public String CtrlServer;    //平台服务器地址 http://xxxx:port 形式 如http://120.25.65.125:8118 http://ygwit.com
-    public String VideoServer;        //视频平台地址  http://xxxx:port 形式 如http://120.25.65.125:8118 http://ygwit.com
+    public String DeviceCtrlServer;        //视频平台地址  http://xxxx:port 形式 如http://120.25.65.125:8118 http://ygwit.com
     public String SwipeCapServer;     //刷卡抓拍服务地址
     public List<String> VideoUrl;          //视频URL, 最大可选四路视频
     public String VideoStorePath;      //视频存储路径

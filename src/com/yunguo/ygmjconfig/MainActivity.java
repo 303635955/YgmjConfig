@@ -160,6 +160,11 @@ public class MainActivity extends ActivityGroup implements OnClickListener{
 			@Override
 			public void onClick(View v) {
 				sm.toggle();
+				if(sm.isSlidingEnabled()){
+					sm.setSlidingEnabled(false);
+				}else{
+					sm.setSlidingEnabled(true);
+				}
 			}
 		});
 		
@@ -177,20 +182,25 @@ public class MainActivity extends ActivityGroup implements OnClickListener{
 	@Override
 	public boolean dispatchKeyEvent(KeyEvent event) {
 		 if(event.getKeyCode() == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN){
-			 AlertDialog.Builder builder = new AlertDialog.Builder(
-						MainActivity.this);
-
-				builder.setIcon(R.drawable.ic_launcher);
-				builder.setTitle("退出软件");
-				builder.setPositiveButton("确认",
-						new DialogInterface.OnClickListener() {
-							public void onClick(DialogInterface dialog,
-									int whichButton) {
-								System.exit(0);
-							}
-						});
-				builder.setNegativeButton("取消", null);
-				builder.create().show();
+			 
+			 if(sm.isSlidingEnabled()){
+				 sm.toggle();
+				 sm.setSlidingEnabled(false);
+			 }else{
+				 AlertDialog.Builder builder = new AlertDialog.Builder(
+						 MainActivity.this);
+				 builder.setIcon(R.drawable.ic_launcher);
+				 builder.setTitle("退出软件");
+				 builder.setPositiveButton("确认",
+						 new DialogInterface.OnClickListener() {
+					 public void onClick(DialogInterface dialog,
+							 int whichButton) {
+						 System.exit(0);
+					 }
+				 });
+				 builder.setNegativeButton("取消", null);
+				 builder.create().show();
+			 }
 
 				return true;
 	         }else{
@@ -204,6 +214,7 @@ public class MainActivity extends ActivityGroup implements OnClickListener{
 		centerlinear.removeAllViews();
 		switch (v.getId()) {
 		case R.id.tvDiscussMeeting: 
+			sm.setSlidingEnabled(true);
 			topTv.setText("房屋管理");
 			centerlinear.addView(getLocalActivityManager().startActivity(
 					"v1",
@@ -213,6 +224,7 @@ public class MainActivity extends ActivityGroup implements OnClickListener{
 			sm.showContent();
 			break;
 		case R.id.tvToday: 
+			sm.setSlidingEnabled(true);
 			topTv.setText("房屋登记");
 			centerlinear.addView(getLocalActivityManager().startActivity(
 					"v1",
@@ -222,6 +234,7 @@ public class MainActivity extends ActivityGroup implements OnClickListener{
 			sm.showContent();
 			break;
 		case R.id.tvLastlist:
+			sm.setSlidingEnabled(true);
 			topTv.setText("设备配置");
 			InmarsatSerialNumber.getInstance().setHouseSn(null);//清空临时数据
 			centerlinear.addView(getLocalActivityManager().startActivity(
@@ -232,7 +245,8 @@ public class MainActivity extends ActivityGroup implements OnClickListener{
 			sm.showContent();
 			break;
 		case R.id.tvMyFavorites: 
-			topTv.setText("系统配置");
+			topTv.setText("修改密码");
+			sm.setSlidingEnabled(true);
 			centerlinear.addView(getLocalActivityManager().startActivity(
 					"v1",
 					new Intent(MainActivity.this, SystemConfigActivity.class)
@@ -255,7 +269,6 @@ public class MainActivity extends ActivityGroup implements OnClickListener{
 			case 0:
 				 AlertDialog.Builder builder = new AlertDialog.Builder(
 							MainActivity.this);
-
 					builder.setIcon(R.drawable.ic_launcher);
 					builder.setTitle("已检查更新，是否现在更新？");
 					builder.setPositiveButton("更新",
@@ -268,6 +281,7 @@ public class MainActivity extends ActivityGroup implements OnClickListener{
 			                         upapp.downFile();
 								}
 							});
+					
 					builder.setNegativeButton("暂不更新", 
 							new DialogInterface.OnClickListener() {
 						public void onClick(DialogInterface dialog,
@@ -275,7 +289,24 @@ public class MainActivity extends ActivityGroup implements OnClickListener{
 							System.exit(0);
 						}
 					});
-					builder.create().show();
+					builder.setCancelable(false);
+					AlertDialog alertDialog = builder.create();
+					alertDialog.setOnKeyListener(new DialogInterface.OnKeyListener(){
+
+						@Override
+						public boolean onKey(DialogInterface dialog,
+								int keyCode, KeyEvent event) {
+							
+							if(keyCode == KeyEvent.KEYCODE_SEARCH){
+								return true;
+							}else{
+								return true;
+							}
+						}
+						
+					});
+					
+					alertDialog.show();
 				break;
 			}
 		};

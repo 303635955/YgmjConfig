@@ -253,6 +253,28 @@
                     
                     <TextView android:text="" />
                 </TableRow>
+                
+                <TableRow
+                    android:layout_marginBottom="10dp"
+                    android:gravity="center" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="20dp"
+                        android:text="平台地址" >
+                    </TextView>
+
+                    <EditText
+                        android:id="@+id/Serverurl"
+                        android:layout_width="0dip"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:maxLength="64"
+                        android:background="@android:drawable/editbox_background"/>
+                    
+                    <TextView android:text="" />
+                </TableRow>
             </TableLayout>
         </LinearLayout>
     </ScrollView>

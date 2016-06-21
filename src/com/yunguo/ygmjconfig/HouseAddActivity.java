@@ -294,7 +294,6 @@ public class HouseAddActivity extends Activity implements OnClickListener{
 		LocationClientOption option = new LocationClientOption();
 		option.setLocationMode(LocationMode.Hight_Accuracy);//设置高精度定位定位模式
 		option.setCoorType("bd09ll");//设置百度经纬度坐标系格式
-		option.setScanSpan(10000);//设置发起定位请求的间隔时间为1000ms
 		option.setIsNeedAddress(true);//反编译获得具体位置，只有网络定位才可以
 		mLocationClient.setLocOption(option);
 		((LocationApplication)getApplication()).mLocationGnote = Gnote;

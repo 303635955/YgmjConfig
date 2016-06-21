@@ -42,12 +42,12 @@ public class LocationApplication extends Application{
 			if (location.getLocType() == BDLocation.TypeGpsLocation){//通过GPS定位
 				//address.append(location.getProvince());//获得当前地址
 				//address.append(location.getCity());//获得当前地址
-				//address.append(location.getDistrict());//获得当前地址
+				address.append(location.getDistrict());//获得当前地址
 				address.append(location.getStreet());//获得当前地址
 			} else if (location.getLocType() == BDLocation.TypeNetWorkLocation){//通过网络连接定位
 				//address.append(location.getProvince());//获得当前地址
 				//address.append(location.getCity());//获得当前地址
-				//address.append(location.getDistrict());//获得当前地址
+				address.append(location.getDistrict());//获得当前地址
 				address.append(location.getStreet());//获得当前地址
 				
 			} else {

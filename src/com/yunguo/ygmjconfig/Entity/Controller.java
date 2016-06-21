@@ -32,9 +32,18 @@ public class Controller extends Protocol{
 	private String CloseToRemindDelay;
     private String UnlockAlarm;
     private String  state = "在线";//状态
+    private String ServerUrl;
     
     
-    public String getState() {
+    public String getServerUrl() {
+		return ServerUrl;
+	}
+
+	public void setServerUrl(String serverUrl) {
+		this.ServerUrl = serverUrl;
+	}
+
+	public String getState() {
 		return state;
 	}
 

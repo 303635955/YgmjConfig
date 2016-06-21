@@ -74,7 +74,6 @@ public class HouseManageActivity extends FragmentActivity {
 		locationimg = (ImageView) findViewById(R.id.locationimg);
 		addresstext = (TextView) findViewById(R.id.addresstext);
 		addresstext.setText(InmarsatSerialNumber.getInstance().getUserAddressId().get(0).get("Name"));//设置初始显示地址
-		
 	}
 	
 	public void initPageAdapter() {

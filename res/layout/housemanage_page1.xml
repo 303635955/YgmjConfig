@@ -4,7 +4,14 @@
     android:background="@drawable/biz_news_local_weather_bg_big"
     android:orientation="vertical" >
     
-    
+     <TextView
+        android:id="@+id/notdateshow"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:visibility="gone"
+        android:textSize="20dip"
+        android:text="╮(╯▽╰)╭没有房屋了"/>
     <com.handmark.pulltorefresh.library.PullToRefreshListView  
     android:id="@+id/HouseMessge"
     android:layout_width="match_parent"  
@@ -15,13 +22,5 @@
     android:dividerHeight="20dip"
     android:layout_marginBottom="50dp"
    /> 
-    
-    <TextView
-        android:id="@+id/notdateshow"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:visibility="gone"
-        android:text="╮(╯▽╰)╭没有房屋了"/>
 
 </LinearLayout>

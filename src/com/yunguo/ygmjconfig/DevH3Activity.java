@@ -198,22 +198,26 @@ public class DevH3Activity extends FragmentActivity {
 				h3notdatetext.setVisibility(View.GONE);
 				break;
 			case 3:
+				
 				h3notdatetext.setVisibility(View.VISIBLE);
 				break;
 			case 4:
 				progressDialog2.dismiss();
+				Toast.makeText(getApplicationContext(), mesg, Toast.LENGTH_LONG).show();
 				
-				String message = "设备绑定成功";
-				if(!flas){
-					message = "设备绑定失败";
-				}
-				
-				if (!mesg.equals("操作失败")) {
-					InmarsatSerialNumber.getInstance().setDev_SN("0");
-					Intent intent = new Intent(DevH3Activity.this,MainActivity.class);
-					startActivity(intent);
-				}else{
-					Toast.makeText(getApplicationContext(), mesg+"\r\n"+message, Toast.LENGTH_LONG).show();
+				if (!mesg.equals("操作失败") ) {
+					if(tmpvalue.equals("66666")){
+						if(mesg.equals("此设备已绑定")){
+						}else{
+							InmarsatSerialNumber.getInstance().setDev_SN("0");
+							Intent intent = new Intent(DevH3Activity.this,MainActivity.class);
+							startActivity(intent);
+						}
+					}else{
+						InmarsatSerialNumber.getInstance().setDev_SN("0");
+						Intent intent = new Intent(DevH3Activity.this,MainActivity.class);
+						startActivity(intent);
+					}
 				}
 				break;
 			}
@@ -295,9 +299,31 @@ public class DevH3Activity extends FragmentActivity {
 				handler1.sendEmptyMessage(1);
 				System.out.println("没有门禁设备");
 			}
-		}else if(list.size() > 0){
-			mWGList.addAll(list);
-			handler1.sendEmptyMessage(0);
+		}else if(tmpvalue.equals("6666")){
+			if(listSn.size() > 0){
+				if(list != null){
+					List<Controller> listcontroller = IsSn2(list,listSn);
+						if(listcontroller.size()>0){
+							mWGList.addAll(listcontroller);
+							handler1.sendEmptyMessage(0);
+						}else{
+							handler1.sendEmptyMessage(1);
+							System.out.println("没有门禁设备");
+							}
+					}else{
+						handler1.sendEmptyMessage(1);
+						System.out.println("没有门禁设备");
+					}
+						
+				}else{
+					handler1.sendEmptyMessage(1);
+					System.out.println("没有门禁设备");
+				}
+		}else if(list != null){
+			if(list.size() > 0){
+				mWGList.addAll(list);
+				handler1.sendEmptyMessage(0);
+			}
 		}else{
 			handler1.sendEmptyMessage(1);
 			System.out.println("没有门禁设备");
@@ -338,12 +364,35 @@ public class DevH3Activity extends FragmentActivity {
 		return listcontroller;
 	}
 	
+	
+public List<Controller> IsSn2(List<Controller> list,List<Map<String,String>> listSn){
+		
+		List<Controller> listcontroller = new ArrayList<Controller>();
+		boolean tmp = true;
+		for(int i = 0; i < listSn.size(); i++){
+			tmp = false;
+			for (int j = 0; j < list.size(); j++) {
+				Controller controller = list.get(j);
+				String str = controller.getmDevSN()+"";
+				
+				if(!str.equals(listSn.get(i).get("SerialNo"))){
+					
+					listcontroller.add(controller);
+			}
+		}
+	}
+		return listcontroller;
+}
+	
 	@SuppressWarnings("unused")
 	public void getH3Data(){
 		ArrayList<ConfigData> pdatas = H3ConfigClient.searchDevice();
+		if(pdatas.size() <= 0){
+			pdatas = H3ConfigClient.searchDevice();
+		}
 		mH3list.clear(); 
 		if(pdatas.size() <= 0){
-			handler1.sendEmptyMessage(3);
+			 handler1.sendEmptyMessage(3);
 			System.out.println("没有H3设备");
 			return;
 		}
@@ -359,7 +408,7 @@ public class DevH3Activity extends FragmentActivity {
 			map.put("DoorCtrlSN", p.DoorCtrlSN);
 			//map.put("DoorCtrlType", SwitchData.SwichDoorType(p.DoorCtrlType+""));
 			map.put("VideoCapDuration", p.VideoCapDuration);
-			map.put("VideoServer", p.CtrlServer);
+			map.put("DeviceCtrlServer", p.DeviceCtrlServer);
 			map.put("VideoUrl", p.VideoUrl);
 			map.put("VideoStorePath", p.VideoStorePath);
 			map.put("OutDoorRtspUrl", p.OutDoorRtspUrl);
@@ -408,6 +457,13 @@ public class DevH3Activity extends FragmentActivity {
 	private Thread mThreadLoadApps2 = new Thread(){
 		@Override
 		public void run() {
+			
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			
 			String ret = "";
 			String intentvalues = intent.getExtras().getString("values");

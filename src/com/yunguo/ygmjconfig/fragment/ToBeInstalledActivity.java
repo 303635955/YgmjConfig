@@ -30,6 +30,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView.FindListener;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -43,6 +44,7 @@ public class ToBeInstalledActivity extends Fragment{
 	private PullToRefreshListView HouseMessge;
 	private MessgeListAdapter messgeListAdapter;
 	private ProgressDialog progressDialog;
+	private TextView notdateshow;
 	private String codestr;
 	private static int page = 1;
 	private static boolean flas = true;
@@ -77,6 +79,7 @@ public class ToBeInstalledActivity extends Fragment{
 		HouseMessge = (PullToRefreshListView) view.findViewById(R.id.HouseMessge);
 		// 设置PullToRefresh  
 		HouseMessge.setMode(Mode.BOTH); 
+		notdateshow = (TextView) view.findViewById(R.id.notdateshow);
 	}
 	
 	
@@ -157,6 +160,13 @@ public class ToBeInstalledActivity extends Fragment{
 				intent.putExtra("houseId", Id);
 				startActivity(intent);
 				break;
+			case 3:
+				notdateshow.setVisibility(View.VISIBLE);
+				Toast.makeText(getActivity(), "加载失败，请检查网络是否连接!", Toast.LENGTH_SHORT).show();
+				break;
+			case 4:
+				Toast.makeText(getActivity(), "加载失败，请检查网络是否连接!", Toast.LENGTH_SHORT).show();
+				break;
 			}
 		}
 	};
@@ -177,18 +187,22 @@ public class ToBeInstalledActivity extends Fragment{
 			map.put("page", "1");
 			map.put("rows", "10");
 			map.put("AreaId",InmarsatSerialNumber.getInstance().getAddressId());
+			String ret = "";
 			try {
 				JSONObject jsonObject = new JSONObject(map.toString());
-				String ret = HtmlUtil.PostStringToUrl(AppCtrl.GetObj().GetAppConfig().GetConfig("UrlQueryhouse"),jsonObject.toString());
-				System.out.println("房屋信息 ================"+ret);
-				getMessgeList(ret);
+				ret = HtmlUtil.PostStringToUrl(AppCtrl.GetObj().GetAppConfig().GetConfig("UrlQueryhouse"),jsonObject.toString());
 			} catch (JSONException e) {
 				e.printStackTrace();
 			}
 			if(progressDialog != null){
 				progressDialog.dismiss();
 			}
-			handler1.sendEmptyMessage(0);
+			if(!ret.equals("")){
+				getMessgeList(ret);
+				handler1.sendEmptyMessage(0);
+			}else{
+				handler1.sendEmptyMessage(3);
+			}
 			
 		}
 	};
@@ -209,14 +223,19 @@ public class ToBeInstalledActivity extends Fragment{
 			map.put("page", page+"");
 			map.put("rows", "10");
 			map.put("AreaId", InmarsatSerialNumber.getInstance().getAddressId());
+			String ret ="";
 			try {
 				JSONObject jsonObject = new JSONObject(map.toString());
-				String ret = HtmlUtil.PostStringToUrl(AppCtrl.GetObj().GetAppConfig().GetConfig("UrlQueryhouse"),jsonObject.toString());
-				getMessgeList(ret);
+				ret = HtmlUtil.PostStringToUrl(AppCtrl.GetObj().GetAppConfig().GetConfig("UrlQueryhouse"),jsonObject.toString());
 			} catch (JSONException e) {
 				e.printStackTrace();
 			}
-			handler1.sendEmptyMessage(1);
+			if(!ret.equals("")){
+				getMessgeList(ret);
+				handler1.sendEmptyMessage(1);
+			}else{
+				handler1.sendEmptyMessage(4);
+			}
 			if(progressDialog != null){
 				progressDialog.dismiss();
 			}

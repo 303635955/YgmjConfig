@@ -219,13 +219,14 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="平台地址" >
+                        android:text="视频平台地址" >
                     </TextView>
 
                     <EditText
                         android:id="@+id/VideoServer"
-                        android:layout_width="fill_parent"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_weight="1"
                         android:background="@android:drawable/editbox_background"/>
                     
                     <TextView android:text="" />

@@ -39,7 +39,8 @@ public class LoginActivity extends Activity {
 	private EditText editUser,editPsw;
 	private Button subBtn;
 	private String user,psw;
-	private String messge,retmsg;
+	private String messge = "";
+	private String retmsg = "";
 	private boolean flas = true;
 	private String tmpstr = "";
 	private SharedPreferences sharedPreferences;  
@@ -188,7 +189,11 @@ public class LoginActivity extends Activity {
 				 }
 			} catch (JSONException e) {
 				e.printStackTrace();
-				 handler.sendEmptyMessage(2);
+				if(retmsg.equals("")){
+					handler.sendEmptyMessage(2);
+				}else{
+					handler.sendEmptyMessage(1);
+				}
 			}
 			 
 		 };

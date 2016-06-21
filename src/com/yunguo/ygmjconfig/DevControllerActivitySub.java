@@ -5,6 +5,7 @@ package com.yunguo.ygmjconfig;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.yunguo.ygmjconfig.Controller.YGController;
 import com.yunguo.ygmjconfig.Entity.Controller;
 import com.yunguo.ygmjconfig.Entity.InmarsatSerialNumber;
 import com.yunguo.ygmjconfig.Util.SerializableMap;
@@ -16,6 +17,8 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.InputType;
+import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
@@ -35,6 +38,8 @@ public class DevControllerActivitySub extends Activity {
 	private EditText edittimedelay;
 	private EditText controlSettingType;
 	private EditText opnedoorSettingType;
+	private EditText Serverurl;
+	String ServerurlStr ;
 	
 	private Spinner mSpinner;
 	private Spinner cSpinner;
@@ -121,6 +126,17 @@ public class DevControllerActivitySub extends Activity {
 		editPsw8 = (EditText) findViewById(R.id.editPsw8);
 		editPsw9 = (EditText) findViewById(R.id.editPsw9);
 		editPsw91 = (EditText) findViewById(R.id.editPsw91);
+		Serverurl = (EditText) findViewById(R.id.Serverurl);
+		
+		
+		//设置EditText的显示方式为多行文本输入  
+		Serverurl.setInputType(InputType.TYPE_TEXT_FLAG_MULTI_LINE); 
+		//文本显示的位置在EditText的最上方  
+		Serverurl.setGravity(Gravity.TOP);  
+		//改变默认的单行模式  
+		Serverurl.setSingleLine(false);  
+		//水平滚动设置为False  
+		Serverurl.setHorizontallyScrolling(false);
 		edittimedelay = (EditText) findViewById(R.id.edittimedelay);
 	}
 	
@@ -239,6 +255,7 @@ public class DevControllerActivitySub extends Activity {
 			editPsw8.setText(postmap.getmDevIP());
 			editPsw9.setText(postmap.getGetway());
 			editPsw91.setText(postmap.getMask());
+			Serverurl.setText(postmap.getServerUrl());
 		//}
 		
 		setSpinnerItemSelectedByValue(cSpinner,postmap.getCtrlType());
@@ -247,6 +264,8 @@ public class DevControllerActivitySub extends Activity {
 		
 		setSpinnerItemSelectedByValue(oSpinner,postmap.getDoorEnable());
 		setSpinnerItemSelectedByValue(tSpinner,postmap.getIsSneak());
+		
+		
 	}
 	
 	
@@ -301,8 +320,7 @@ public class DevControllerActivitySub extends Activity {
 		 setmap.put("IsTag", postmap.getIsTag());
 		 setmap.put("CloseToRemindDelay", postmap.getCloseToRemindDelay());
 		 setmap.put("UnlockAlarm", postmap.getUnlockAlarm());
-		 
-		 
+		 ServerurlStr = Serverurl.getText().toString(); 
 		 System.out.println(setmap);
 		/* setmap.put("TheDiveIs", readheadType);
 		 setmap.put("TheDiveIs", readheadProtocolType);*/
@@ -336,7 +354,7 @@ public class DevControllerActivitySub extends Activity {
 	private Thread mThreadLoadApps = new Thread(){
 		@Override
 		public void run() {
-			
+			new YGController().SetDevCtrlPlatform(ServerurlStr, postmap.getmDevSN(), postmap.getmDevIP());
 			postmap.SetControllerIP(DHCP, ip, Mask, Gateway);
 			postmap.setmDevIP(ip);
 			Boolean tmp = postmap.SetDoorCtrlInfo(setmap);

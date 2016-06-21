@@ -45,7 +45,7 @@ public class H3ConfigClient {
             //2. 发送
             DatagramPacket sendcmd = new DatagramPacket(p.toJson().getBytes(), p.toJson().getBytes().length, InetAddress.getByName(NET_IP), NET_PORT);
             socket.send(sendcmd);
-            socket.setSoTimeout(2000);
+            socket.setSoTimeout(5000);
             //3. 接收多个回复
             do{
                 socket.receive(recv);
@@ -104,6 +104,7 @@ public class H3ConfigClient {
             DatagramPacket recvpack = new DatagramPacket(recvbuff, recvbuff.length);
             socket = new DatagramSocket(0, InetAddress.getByName("0.0.0.0"));
             socket.setBroadcast(true);
+            socket.setSoTimeout(5 * 1000);
             DatagramPacket sendpack = new DatagramPacket(pcmd.toJson().getBytes(), pcmd.toJson().getBytes().length, InetAddress.getByName(desIp), NET_PORT);
             socket.send(sendpack);
             //接收
