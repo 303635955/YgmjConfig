@@ -67,8 +67,6 @@ public class AddRtspUrlDiog extends Activity{
 			setData();
 		}
 		
-		setVerify();
-		
 		setOnClick();
 	}
 	
@@ -131,8 +129,6 @@ public class AddRtspUrlDiog extends Activity{
 	}
 	
 	public void setVerify(){
-
-		
 	    form = new Form();
 		/**
 		 * 非空验证
@@ -192,7 +188,7 @@ public class AddRtspUrlDiog extends Activity{
 		studate.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				
+				setVerify();
 				if(form.validate()){
 					showSelectedResult();
 				}else{
@@ -237,16 +233,12 @@ public class AddRtspUrlDiog extends Activity{
 			String str3 = username.getText().toString();
 			String str4 = passworld.getText().toString();
 			if(tmp.equals("海康")){
-				RtspStr = "rtsp://"+str3+":"+str4+"@"+str1+":"+str2+"/MPEG-4/ch1/main/av_stream";
+				RtspStr = "rtsp://"+str3+":"+str4+"@"+str1+":"+str2+"/MPEG-4/ch1/sub/av_stream";
 			}else{
-				RtspStr = "rtsp://"+str3+":"+str4+"@"+str1+":"+str2+"/cam/realmonitor?channel=2&subtype=1";
+				RtspStr = "rtsp://"+str3+":"+str4+"@"+str1+":"+str2+"/cam/realmonitor?channel=1&subtype=1";
 			}
 		}
-	/*	
-		UrlValidator urlValidator = new UrlValidator(this);
-		Validate telValidate = new Validate(RtspStr);
-		telValidate.addValidator(urlValidator);//非空验证
-*/		Intent intent = new Intent();
+		Intent intent = new Intent();
 		intent.putExtra("rtsp", RtspStr);
 		intent.putExtra("rtspType", DoorType);
 		intent.putExtra("postion", postion);
